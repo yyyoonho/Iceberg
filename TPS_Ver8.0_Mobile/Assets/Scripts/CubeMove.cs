@@ -14,6 +14,8 @@ public class CubeMove : MonoBehaviour
     {
         StartCoroutine(RandomMove());
     }
+
+    //3.5초마다 Enemy가 무작위로 움직일 수 있도록, 맵의 무작위 좌표에 이동할 곳 생성.
     IEnumerator RandomMove()
     {
         while(true)

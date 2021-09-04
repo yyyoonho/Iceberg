@@ -23,6 +23,8 @@ public class PackGenerator : MonoBehaviour
             StopCoroutine(InstantiateAnitPack());
         }
     }
+
+    //AntiPack을 인스턴트 시킵니다.
     IEnumerator InstantiateAnitPack()
     {
         while(!dead)
@@ -36,6 +38,7 @@ public class PackGenerator : MonoBehaviour
         }
     }
 
+    //HealPack을 인스턴트 시킵니다.
     public void InstantiateHealPack()
     {
         Instantiate(healPackPrefab, new Vector3(spawner.position.x, spawner.position.y+1, spawner.position.z+2), spawner.rotation);

@@ -11,21 +11,21 @@ public class EnemyController : MonoBehaviour
     public GameDirector gameDirector;
 
     private Transform _transform;
-    private Transform playerTransform; //이후에 랜덤상자로 변경할 것!
+    private Transform playerTransform;
     private NavMeshAgent nvAgent;
     private Animator anim;
 
-    //추적 사정거리
+    //Enemy가 해당 사정거리안에 Player가 접근 시 추격.
     public float traceDist = 200.0f;
 
-    //사망여부
+    //사망여부 확인
     private bool isDead = false;
 
     private void Start()
     {
         gameDirector = GameObject.Find("GameDirector").GetComponent<GameDirector>();
         _transform = this.gameObject.GetComponent<Transform>();
-        playerTransform = GameObject.FindWithTag("cube").GetComponent<Transform>(); //큐브의 위치로 바꾸기!
+        playerTransform = GameObject.FindWithTag("cube").GetComponent<Transform>();
         nvAgent = this.gameObject.GetComponent<NavMeshAgent>();
         anim = this.gameObject.GetComponent<Animator>();
 
@@ -35,10 +35,11 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator CheckState()
     {
+        // Enemy가 살아있다면, 플레이어와의 거리에 따라 trace모드, idle 모드로 전환합니다.
         while(!isDead)
         {
             yield return new WaitForSeconds(0.2f);
-            float dist = Vector3.Distance(playerTransform.position, _transform.position); //플레이어 -> 큐브로 바꾸기
+            float dist = Vector3.Distance(playerTransform.position, _transform.position);
 
             if(dist<=traceDist)
             {
@@ -50,7 +51,8 @@ public class EnemyController : MonoBehaviour
                 curState = CurrentState.idle;
             }
         }
-        if(isDead) //죽었을때
+        //Enemy가 죽었을 경우, 상태체크를 stop하고 IsDead 애니메이션 재생, 이후 오브젝트 destroy 합니다.
+        if (isDead)
         {
             Invoke("DestroyObject", 4.3f);
             anim.SetTrigger("IsDead");
@@ -58,6 +60,7 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    // 상태에 따라 애니메이션을 변경합니다.
     IEnumerator CheckStateForAction()
     {
         while(!isDead)

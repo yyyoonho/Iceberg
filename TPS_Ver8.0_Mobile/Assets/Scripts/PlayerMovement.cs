@@ -37,9 +37,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Move(Vector2 inputDirection)
     {
-        //float x = Input.GetAxis("Horizontal");
-        //float z = Input.GetAxis("Vertical");
-
         Vector2 moveInput = inputDirection;
 
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;

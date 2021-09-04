@@ -13,10 +13,14 @@ public class LivingEntity : MonoBehaviour
     public int health;
     public bool dead;
     public Animator anim;
+
+    //체력을 초기화합니다.
     protected virtual void Start()
     {
         health = startingHealth;
     }
+
+    //공격을 받은 경우.
     public void TakeHit(int damage)
     {
         health -= damage;
@@ -29,6 +33,7 @@ public class LivingEntity : MonoBehaviour
         }
     }
 
+    //체력을 회복한 경우.
     public void TakeHeal(int heal)
     {
         if(health>=100)
@@ -46,6 +51,8 @@ public class LivingEntity : MonoBehaviour
             return;
         }
     }
+
+    //객체가 죽은 경우.
     protected void Die()
     {
         Debug.Log("죽었습니다..");

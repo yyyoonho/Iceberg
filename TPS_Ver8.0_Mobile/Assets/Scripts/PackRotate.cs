@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PackRotate : MonoBehaviour
 {
-
-    // Update is called once per frame
+    // Enemy가 생성한 Pack을 회전시킵니다.
     void Update()
     {
         transform.Rotate(0 * Time.deltaTime, 60 * Time.deltaTime, 0 * Time.deltaTime);

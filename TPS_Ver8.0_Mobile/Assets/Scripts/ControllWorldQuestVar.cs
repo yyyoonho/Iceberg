@@ -22,6 +22,7 @@ public class ControllWorldQuestVar : MonoBehaviour
     public PlayerInput playerInput;
     public float timeBetweenShot;
 
+    //메인게임에서 영향을 받은 요소들을 미니게임에 반영합니다.
     void Start()
     {
         packGenerator = enemy.GetComponent<Transform>().GetComponentInChildren<PackGenerator>();

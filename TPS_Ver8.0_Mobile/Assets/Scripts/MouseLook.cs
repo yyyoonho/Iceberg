@@ -9,13 +9,7 @@ public class MouseLook : MonoBehaviour
     public Transform playerBody;
     float xRotation = 0f;
 
-    void Start()
-    {
-        //anim = GetComponent<Animator>();
-        //Cursor.lockState = CursorLockMode.Locked;
-    }
-
-    // Update is called once per frame
+    //터치를 입력받아 Player를 컨트롤합니다.
     void Update()
     {
         if (Input.touchCount > 0)
@@ -24,11 +18,9 @@ public class MouseLook : MonoBehaviour
             {
                 Touch touch = Input.GetTouch(i);
                 Vector2 position = touch.position;
+                //터치를 인식할 수 있는 범위를 지정합니다.
                 if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(i).fingerId) && position.x > 600 && position.x < 1900)
                 {
-                    //float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-                    //float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
-
                     float mouseX = Input.GetTouch(i).deltaPosition.x * mouseSensitivity * Time.deltaTime;
                     float mouseY = Input.GetTouch(i).deltaPosition.y * mouseSensitivity * Time.deltaTime;
 

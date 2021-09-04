@@ -16,6 +16,8 @@ public class Enemy : LivingEntity
         base.Start();
         enemyHp = GameObject.Find("EnemyHp");
     }
+
+    // Enemy가 눈덩이에 맞았을 경우
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == ("snow"))
