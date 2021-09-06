@@ -26,9 +26,11 @@ public class Player : LivingEntity
         StartCoroutine("CheckState");
     }
 
-    private void OnTriggerStay(Collider other) //해당 Area에 있으면 피해를 받거나, 회복합니다.
+    private void OnTriggerStay(Collider other) 
     {
-        if(other.tag =="HealPack")
+        //해당 Area에 있으면 피해를 받거나, 회복합니다.
+
+        if (other.tag =="HealPack")
         {
             Debug.Log("[힐팩] 경계안에서 초당 3씩 회복합니다!");
             playerState = State.healPack;
@@ -50,7 +52,8 @@ public class Player : LivingEntity
         while(true)
         {
             yield return new WaitForSeconds(0.5f);
-            if(playerState == State.hitPack) //초당 10의 데미지를받고, 20의 스코어가 감소합니다.
+            //초당 10의 데미지를받고, 20의 스코어가 감소합니다.
+            if (playerState == State.hitPack) 
             {
                 UIManager.Instance.UpdateHp(health);
                 aud.PlayOneShot(antiPackSound);
@@ -62,7 +65,8 @@ public class Player : LivingEntity
                     break;
                 }
             }
-            else if(playerState == State.healPack) //초당 10의 체력을 회복합니다.
+            //초당 10의 체력을 회복합니다.
+            else if (playerState == State.healPack) 
             {
                 UIManager.Instance.UpdateHp(health);
                 aud.volume = 1f;
@@ -75,12 +79,6 @@ public class Player : LivingEntity
         DeadState();
     }
 
-    private void DestroyObject()
-    {
-        SceneManager.LoadScene("EndScene");
-        //Destroy(gameObject);
-    }
-
     public void DeadState()
     {
         gameObject.GetComponent<PlayerInput>().enabled = false;
@@ -89,4 +87,11 @@ public class Player : LivingEntity
         aud.PlayOneShot(deadSound);
         Invoke("DestroyObject", 5.0f);
     }
+
+    private void DestroyObject()
+    {
+        SceneManager.LoadScene("EndScene");
+    }
+
+    
 }

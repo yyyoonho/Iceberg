@@ -25,9 +25,12 @@ public class Enemy : LivingEntity
             Debug.Log("눈덩이에 맞았습니다!");
             aud.PlayOneShot(hitBySnow);
             UIManager.Instance.UpdateScoreText(100);
-            base.TakeHit(snowDamage); //눈덩이를 맞을때마다 20씩 hp가 감소합니다.
-            enemyHp.gameObject.GetComponent<Slider>().value += -snowDamage; //머리위 UI로 enemy의 현재 체력을 표시합니다.
+            //눈덩이를 맞을때마다 20씩 hp가 감소합니다.
+            base.TakeHit(snowDamage);
+            //머리위 UI로 enemy의 현재 체력을 표시합니다.
+            enemyHp.gameObject.GetComponent<Slider>().value += -snowDamage; 
         }
     }
 
 }
+

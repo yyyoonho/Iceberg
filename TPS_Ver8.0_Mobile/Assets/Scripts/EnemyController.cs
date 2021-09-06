@@ -35,7 +35,8 @@ public class EnemyController : MonoBehaviour
 
     IEnumerator CheckState()
     {
-        // Enemy가 살아있다면, 플레이어와의 거리에 따라 trace모드, idle 모드로 전환합니다.
+        // Enemy가 살아있다면, 플레이어와의 거리에 따라 trace모드, 
+        // idle 모드로 전환합니다.
         while(!isDead)
         {
             yield return new WaitForSeconds(0.2f);
@@ -51,7 +52,8 @@ public class EnemyController : MonoBehaviour
                 curState = CurrentState.idle;
             }
         }
-        //Enemy가 죽었을 경우, 상태체크를 stop하고 IsDead 애니메이션 재생, 이후 오브젝트 destroy 합니다.
+        // Enemy가 죽었을 경우, 상태체크를 stop하고 IsDead 애니메이션 재생, 
+        // 이후 오브젝트 destroy 합니다.
         if (isDead)
         {
             Invoke("DestroyObject", 4.3f);
@@ -78,7 +80,7 @@ public class EnemyController : MonoBehaviour
                     anim.SetBool("isMoving", true);
                     break;
                 case CurrentState.attack:
-                    //어택 애니메이션 재생
+                    //어택옵션 추가 시, 애니메이션 재생
                     break;
             }
             yield return null;

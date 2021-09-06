@@ -33,7 +33,8 @@ public class PackGenerator : MonoBehaviour
             {
                 StopCoroutine(InstantiateAnitPack());
             }
-            Instantiate(antiPackPrefab,new Vector3(spawner.position.x, spawner.position.y, spawner.position.z), spawner.rotation);
+            Instantiate(antiPackPrefab,
+                new Vector3(spawner.position.x, spawner.position.y, spawner.position.z), spawner.rotation);
             yield return new WaitForSeconds(instantTime);
         }
     }
@@ -41,7 +42,8 @@ public class PackGenerator : MonoBehaviour
     //HealPack을 인스턴트 시킵니다.
     public void InstantiateHealPack()
     {
-        Instantiate(healPackPrefab, new Vector3(spawner.position.x, spawner.position.y+1, spawner.position.z+2), spawner.rotation);
+        Instantiate(healPackPrefab, 
+            new Vector3(spawner.position.x, spawner.position.y+1, spawner.position.z+2), spawner.rotation);
     }
 
     public void ChangeStateDead()
